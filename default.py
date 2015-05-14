@@ -865,6 +865,8 @@ def Main_Categories():
                         img=getImgPath('Live TV') )
     addon.add_directory( { 'mode' : 'leaf', 'url' : 'http://www.tubetamil.com/category/watch-cinema-videos/watch-new-movie-trailers'  }, { 'title' : '[B]Tamil Trailers[/B]' },
                         img=getImgPath('Movie Trailers') )
+    addon.add_directory( { 'mode' : 'leaf', 'url' : 'http://www.tubetamil.com/category/watch-daily-tamil-news-online'  }, { 'title' : '[B]Tamil News[/B]' },
+                        img=getImgPath('News') )
     addon.add_directory( { 'mode' : 'sportstv' }, { 'title' : '[B]Sports TV[/B]' },
                         img=getImgPath('sports') )
     addon.add_directory( { 'mode' : 'linksakash' }, { 'title' : '[B]TV From Akash[/B]' },
