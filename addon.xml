@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.tamilkodi" name="Tamil KODI" version="1.0" provider-name="cyberrule">
+<addon id="plugin.video.kannakodi" name="Kanna KODI" version="1.0" provider-name="cyberrule">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.simplejson" version="2.0.10" />
