@@ -14,7 +14,7 @@ changeLog       = addon_dir + '/changelog.txt'
 
 icon = xbmcaddon.Addon().getAddonInfo('icon')
 
-defaultFile     = 'http://cyberrule.com/tv/tamilkodi/default.py'
+defaultFile     = 'http://cyberrule.com/tv/tamilkodi/get.php?file_version'
 noticeFile      = 'http://cyberrule.com/tv/tamilkodi/get.php?version'
 
 
