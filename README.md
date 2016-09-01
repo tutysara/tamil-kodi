@@ -6,7 +6,7 @@ A Kodi plugin for Tamil trailers, movies, TV Shows. This is a fork of Tamil Kodi
 
 - Trailers, HD Movies, News listed in the front page
 
-## Install
+## Build
 
 Unix-like platforms such as Linux and Mac OS X
 ```
@@ -16,6 +16,11 @@ Windows
 ```
   gradlew
 ```
+The plugin zip file will be created under build folder.
+
+## Install
+
+[HOW-TO:Install add-ons from zip files](http://kodi.wiki/view/HOW-TO:Install_add-ons_from_zip_files)
 
 ## To Do
 
