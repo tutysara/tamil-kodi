@@ -1,0 +1,8 @@
+defaultTasks 'zip'
+
+task zip(type:Zip) {
+ from ('src/')
+ into 'plugin.video.kannakodi' // note that this specifies path *in* the archive
+ destinationDir file('build') // directory that you want your archive to be placed in
+ archiveName 'plugin.video.kannakodi.zip'
+}
