@@ -1,14 +1,20 @@
-# Tamil trailers
-A Kodi plugin for tamil trailers. This is a fork of Tamil Kodi plugin.
+# Tamil Kodi
 
-# To Do
+A Kodi plugin for Tamil trailers, movies, TV Shows. This is a fork of Tamil Kodi plugin.
 
--[ ] Add News to the front page
+## Additional Features
 
-# Site
+- Trailers, HD Movies, News listed in the front page
 
-. [Trailers](http://www.tubetamil.com/category/watch-cinema-videos/watch-new-movie-trailers)
+## To Do
 
+- [x] Add News to the front page
+- [x] Add HD Movies
+- [x] Add Trailers to the front page
+- [ ] Navigate channels with channel + button on TV remote
+- [ ] Favorite channels
 
+## Source
 
- 
+- [Trailers](http://www.tubetamil.com/category/watch-cinema-videos/watch-new-movie-trailers)
+- [HD Movies](http://tamilgun.com/categories/hd-movies/)
