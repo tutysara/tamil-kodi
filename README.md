@@ -6,6 +6,17 @@ A Kodi plugin for Tamil trailers, movies, TV Shows. This is a fork of Tamil Kodi
 
 - Trailers, HD Movies, News listed in the front page
 
+## Install
+
+Unix-like platforms such as Linux and Mac OS X
+```
+  ./gradlew
+```
+Windows
+```
+  gradlew
+```
+
 ## To Do
 
 - [x] Add News to the front page
