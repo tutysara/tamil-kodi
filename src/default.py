@@ -1139,6 +1139,8 @@ def Main_Categories():
                         fanart=fanartimg )
     addon.add_directory( { 'mode' : 'leaf', 'url' : 'http://www.tubetamil.com/category/watch-cinema-videos/watch-new-movie-trailers'  }, { 'title' : '[B]Tamil Trailers[/B]' },
                         img=getImgPath('Movie Trailers') )
+    addon.add_directory( { 'mode' : 'leaf_bw', 'url' : 'http://behindwoods.com/tamil-movies/tamil-trailers.html'  }, { 'title' : '[B]Behindwoods Trailers[/B]' },
+                        img=getImgPath('Movie Trailers') )
     addon.add_directory( { 'mode' : 'leaf', 'url' : 'http://www.tubetamil.com/category/watch-daily-tamil-news-online'  }, { 'title' : '[B]Tamil News[/B]' },
                         img=getImgPath('News') ) 
     addon.add_directory( { 'mode' : 'sportstv' }, { 'title' : '[B]Sports TV[/B]' },
@@ -1328,10 +1330,28 @@ def Main_Leaf( url ):
    xbmcplugin.endOfDirectory(int(sys.argv[1]))
    thumbnailView()
 
+def Main_Leaf_bw( url ):
+   print "leaf:" + url
+   response = net.http_GET( url )
+   html = response.content
+   soup = BeautifulSoup( html )
+   div = soup.findAll( 'a', { 'class' : 'img-loader-cntr' } )
+   print "div =>> ",div
+   for a in div:
+      url = 'http://behindwoods.com' + a[ 'href' ]
+      title = a[ 'title' ]
+      img = 'http://behindwoods.com' + a.img[ 'src' ]
+
+      addon.add_directory( { 'mode' : 'load_videos', 'url' : url }, { 'title' : title.encode('utf-8')},
+                           img=img, total_items=len(div) )
+
+   pages = soup.find( 'ul', { 'class' : 'page_navi' } )
+   xbmcplugin.endOfDirectory(int(sys.argv[1]))
+   thumbnailView()
+
 ########========AFTER UPDATE
 def checkupdate():
-    if (update.CheckForUpdates()):
-         Main_Categories()
+    Main_Categories()
 
 def viewNotice():
     update.TextBoxes("[B][COLOR green]Tamil KODI Notice[/B][/COLOR]", update.getNotice())
@@ -1672,7 +1692,8 @@ else:
 
     elif mode == 'leaf':
        Main_Leaf( url )
-
+    elif mode == 'leaf_bw':
+       Main_Leaf_bw( url )
     elif mode == 'load_videos':
        Load_Video( url )
 

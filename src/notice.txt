@@ -36,7 +36,7 @@ If anyone donate me it will encourage me.
 
 
 
-__notice__ = "0.1502"
+__notice__ = "2.1502"
 Please Drop me an E-mail: tamil@tamilkodi.com
 
 Enjoy :)
