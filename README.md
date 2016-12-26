@@ -4,7 +4,9 @@ A Kodi plugin for Tamil trailers, movies, TV Shows. This is a fork of Tamil Kodi
 
 ## Additional Features
 
-- Trailers, HD Movies, News listed in the front page
+- Trailers, News listed in the front page
+- Behindwoods trailers and songs
+- Tamilgun HD Movies dedicated link
 
 ## Build
 
