@@ -18,6 +18,10 @@ Windows
 ```
 The plugin zip file will be created under build folder.
 
+## Download
+
+Precompiled version can be downloaded from https://goo.gl/fVriRt
+
 ## Install
 
 [HOW-TO:Install add-ons from zip files](http://kodi.wiki/view/HOW-TO:Install_add-ons_from_zip_files)
