@@ -1,4 +1,4 @@
-__version__ = "1.9"
+__version__ = "1.94"
 
 import urllib, urllib2
 import xbmcplugin, xbmcgui, xbmc, xbmcaddon
@@ -49,7 +49,6 @@ LIVE_RADIO     = "http://www.tamilkodi.com/tkodi/check.php?radio"
 __SPORTS__     = "http://www.tamilkodi.com/tkodi/check.php?sport"
 __AKASH__      = "http://tamilkodi.com/tkodi/check.php?akash"
 fanartimg      = 'https://lh3.googleusercontent.com/-DXYu2Mm04hE/VTBYG9U1x2I/AAAAAAAACPM/VZ6bE_XKyCk/s1600-Ic42/fanart.jpg'
-#https://www.dropbox.com/s/9bg4lwb3jhinb7m/AkashSports.xml?dl=0
 
 net            = Net()
 addonId        = 'plugin.video.tamilkodi'
@@ -116,6 +115,24 @@ def addItem(name, img, url):
 
     else:
         xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li)
+
+
+def open_url( url, referer = None, user_agent = None):
+    if not referer:
+        referer = url
+    if not user_agent:
+        user_agent = 'Mozilla/5.0 (Windows NT 6.1; rv:14.0) Gecko/20100101 Firefox/14.0.1'
+    try:
+        req = urllib2.Request( url )
+        req.add_header('User-Agent', user_agent)
+        req.add_header('Referer', referer)
+        response = urllib2.urlopen(req)
+        html = response.read()
+        return html
+    except urllib2.HTTPError, e:
+        html = e.fp.read()
+        print 'error occured in opening url ' + html
+        pass
 
 
 def parseMainPage():
@@ -362,6 +379,8 @@ def parseRajMoviePage( url ):
 ### def get_media_url(self, host, media_id):
 
 def get_daily_media_url(web_url):
+    print 'web url: ' + web_url
+    #print getDailyStreamUrl(web_url)
         link = net.http_GET(web_url).content
         if link.find('"error":') > 0:
             try:
@@ -417,16 +436,22 @@ def get_daily_media_url(web_url):
             q = '0'
             if q == '0':
                 # Highest Quality
+            print 'Highest quality'
                 vUrl = videoUrl[0]
             elif q == '1':
                 # Medium Quality
+            print 'medium quality'
                 vUrl = videoUrl[(int)(vUrlsCount / 2)]
             elif q == '2':
                 # Lowest Quality
                 vUrl = videoUrl[vUrlsCount - 1]
 
         #common.addon.log('url:' + vUrl)
-        return vUrl
+    m_url = vUrl.split('?auth=')
+    the_url = m_url[0] + '?redirect=0&auth=' + m_url[1]
+    
+    match = re.compile('(http://.+?.m3u8)', re.DOTALL).findall(net.http_GET(the_url).content)
+    return match[0]
 
 def parseDailymotion( url ):
    videos = []
@@ -528,6 +553,12 @@ def parseYoutube( url ):
       videos += [ 'http://' + netloc + path + qv ]
    return videos
 
+def paerse_Hideplay( url ):
+    html = open_url( url )
+    link = re.compile( '"file":"(.*?)"' ).findall( html )
+    return ( link[0] + '|referer=' + url )
+    exit()
+
 def Load_Video( url ):
    print "Load_Video=" + url
    try:
@@ -609,6 +640,9 @@ def Load_Video( url ):
       elif sourceVideo.endswith('.mp4') or sourceVideo.endswith('.flv'):
             videoItem.append((sourceVideo, sourceName, 'mp4|flv'))
 
+        elif sourceName == 'Hideplay':
+            videoItem.append( ( sourceVideo, 'GVideo|Hideplay', 'm3u8' ) )
+  
       else:
          print "sourceVideo and Name : " + sourceVideo, sourceName
          hosted_media = urlresolver.HostedMediaFile( url=sourceVideo, title=sourceName )
@@ -792,6 +826,8 @@ def parseCyberCustom(url):
         else:
             print "megamp4 file deleted"
             return False
+    if 'hideplay' in url:
+        return paerse_Hideplay( sourceVideo )
 
 
 
@@ -1547,6 +1583,8 @@ if play:
    elif 'fastplay' in url:
         print 'in fastplay ', url
         stream_url = url
+   elif 'hideplay' in url:
+        stream_url = paerse_Hideplay( url )
    else:
       print 'URL NEW: ', url
       hosted_media = urlresolver.HostedMediaFile( url=url, title=name )
@@ -1611,7 +1649,7 @@ else:
             isDirectory = addon.queries.get('isDirectory', None)
             #einthusan(url, mode, isDirectory)
             print 'inthusan', get_pack('resources/einthusan.py')
-            if '27b79dbcf28b3180b17fc0252066e520' != get_pack('resources/einthusan.py'):
+            if '08ef89ec30c583d67a2aadd364872b0a' != get_pack('resources/einthusan.py'):
                 getdov
 
             params=get_params()

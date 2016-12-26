@@ -140,9 +140,9 @@ def CheckForUpdates():
                                              #"will be automatically downloaded in a moment")
 
 
-            #downloadPythonFile(programPath, 'default.py')
-            #downloadPythonFile(programPath, 'update.py')
-            #downloadPythonFile(programPath, 'changelog.txt')
+            downloadPythonFile(programPath, 'default.py')
+            downloadPythonFile(programPath, 'update.py')
+            downloadPythonFile(programPath, 'changelog.txt')
             xbmc.executebuiltin("XBMC.Notification(TamilKodi Update,Successful,5000,"+icon+")")
             xbmc.executebuiltin("XBMC.Container.Refresh")
 
