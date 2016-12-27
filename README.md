@@ -2,6 +2,10 @@
 
 A Kodi plugin for Tamil trailers, movies, TV Shows. This is a fork of Tamil Kodi plugin.
 
+## Screenshot
+
+![Screenshot](screenshot/screenshot.png "A screenshot of the plugin")
+
 ## Additional Features
 
 - Trailers, News listed in the front page
